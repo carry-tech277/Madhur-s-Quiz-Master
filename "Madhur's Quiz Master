@@ -1,0 +1,70 @@
+import time
+
+questions =  [
+    ["Who is the founder of Instagram?", "Bill Gates" ,"Mark Zuckerberg", "Steve Jobs", "Jeff Bezos", "b"],
+    ["What is the capital city of Australia?", "Canberra", "Sydney", "Melbourne", "Queensland", "a"],
+    ['In which sport can a player score a "try"?', "Rugby Union", "American Football", "Australian Football", "Rugby Prime", "a"],
+    ["What is the chemical symbol for the element Gold?", "Ag", "Au", "Gl", "Ae", "b"],
+    ["Who was the first President of the United States?", "James Madison", "Thomas Jefferson", "John Adams", "George Washington", "d"],
+    ["Who is credited with inventing the World Wide Web?", "Tim Berners-Lee", "Bill Gates", "Steve Jobs", "Larry Page", "a"],
+    ["What is the highest-grossing film of all time (as of 2024)?", "Avengers: Endgame", "Titanic", "Avatar", "Star Wars: The Force Awakens", "c"],
+    ["Who won the FIFA World Cup in 2018?", "Brazil", "France", "Germany", "Argentina", "b"],
+    ["Who wrote the Harry Potter series?", "J.R.R. Tolkien", "J.K. Rowling", "C.S. Lewis", "Roald Dahl", "b"],
+    ["Which is the largest continent by land area?", "Europe", "Africa", "North America", "Asia", "d"],
+    ["Who developed the first successful polio vaccine?", "Jonas Salk", "Albert Sabin", "Edward Jenner", "Alexander Fleming", "a"],
+    ["Who is known as the father of modern computer science?", "John von Neumann", "Charles Babbage", "Alan Turing", "Tim Berners-Lee", "c"],
+    ["Which country has the world's oldest continuously used national flag?", "Sweden", "Denmark", "Japan", "Switzerland", "b"],
+    ["Who was the first woman to win a Nobel Prize?", "Marie Curie", "Mother Teresa", "Rosalind Franklin", "Dorothy Hodgkin", "a"],
+]
+
+levels = [10, 20, 30, 50, 100, 120, 150, 180, 200, 250, 300, 350, 400, 450, 500]
+money = 0 
+
+print("Welcome to Madhur's Quiz Master\n")
+time.sleep(0.5)
+name = input("Enter Your Name: ")
+time.sleep(0.2)
+print("\n")
+print(f"{name}, You will be given {len(questions)} questions, each question will have 4 options.\n")
+time.sleep(3.5)
+print("Let's get started....")
+time.sleep(1)
+
+for i in range(len(questions)):
+    question = questions[i]
+    print(f"\nQuestion for Rs. {levels[i]}\n".center(50))
+    time.sleep(0.5)
+    print(f"{question[0]}\n")
+    print(f"A. {question[1]}      B. {question[2]}")
+    time.sleep(0.2)
+    print(f"C. {question[3]}      D. {question[4]}")
+    time.sleep(0.2)
+
+    while True:
+        reply = input("\nEnter your answer (A-D) or 'Q' to quit: ").strip().lower()  
+
+        if reply == 'q':
+            money = levels[i-1]
+            print(f"\nYou have decided to quit. Your take-home money is Rs. {money}")
+            quit()
+
+        if reply in ['a', 'b', 'c', 'd']:
+            break
+        else:
+            print("Invalid input. Please enter A, B, C, D, or Q.")
+
+    correct_answer = question[-1].lower() 
+
+    if reply == correct_answer:
+        print(f"\nCorrect answer! You have won Rs. {levels[i]}")
+        if i == 4:
+            money = 100
+        elif i == 9:
+            money = 200
+        elif i == 14:
+            money = 500
+    else:
+        print("Wrong Answer!")
+        break
+
+print(f"Your take-home money is Rs. {money}")
